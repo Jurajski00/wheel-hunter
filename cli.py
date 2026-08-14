@@ -1,5 +1,5 @@
-from car import Car
-from car_actions import add_car
+from car import *
+from car_actions import *
 import dataclasses
 
 def run():
@@ -9,6 +9,7 @@ def run():
 
         if user_input == "0":
             print("Goodbye!")
+            print()
             return
 
         handle_action(user_input)
@@ -22,6 +23,7 @@ def handle_action(user_input):
             show_cars_cli()
         case _:
             print("Wrong input")
+            print()
 
 
 def add_car_cli():
@@ -45,7 +47,13 @@ def generate_car():
 
 
 def show_cars_cli():
-    pass
+    print("==================")
+    print("       CARS       ")
+    print("==================")
+    print()
+    for car in show_cars():
+        print(car)
+    print()
 
 
 def show_menu():
