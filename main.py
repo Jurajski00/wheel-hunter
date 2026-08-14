@@ -1,5 +1,7 @@
+from cli import run
+
 def main():
-    print("test")
+    run()
 
 if __name__ == "__main__":
     main()
