@@ -1,5 +1,6 @@
 from car import Car
 from car_actions import add_car
+import dataclasses
 
 def run():
     while True:
@@ -29,18 +30,18 @@ def add_car_cli():
     print("===================")
     print()
 
-    car_data = {
-        "brand": input("Brand: "),
-        "model": input("Model: "),
-        "year": int(input("Year: ")),
-        "price": int(input("Price: ")),
-        "mileage": int(input("Mileage: ")),
-        "url": input("Url: "),
-    }
-
-    car = Car(**car_data)
+    car = generate_car()
     add_car(car)
+    print()
     print(f"Added {car.brand} {car.model}!")
+    print()
+
+
+def generate_car():
+    car_data = {}
+    for field in dataclasses.fields(Car):
+        car_data[field.name] = field.type(input(f"{field.name.capitalize()}: "))
+    return Car(**car_data)
 
 
 def show_cars_cli():
