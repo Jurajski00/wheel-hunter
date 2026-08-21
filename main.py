@@ -1,4 +1,4 @@
-from cli import *
+from cli import run
 
 def main():
     run()

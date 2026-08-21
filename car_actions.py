@@ -1,6 +1,4 @@
-from storage import *
-from car import *
-import dataclasses
+from storage import get_id, save_car, get_cars
 
 def add_car(car):
     car.identifier = get_id()

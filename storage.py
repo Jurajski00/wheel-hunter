@@ -1,6 +1,6 @@
 from dataclasses import asdict
 from pathlib import Path
-import json
+from json import dump, load
 
 file_name = "listings.json"
 
@@ -13,7 +13,7 @@ def save_car(car):
     json_file["next_id"] += 1
 
     with open(file_name, "w") as file:
-        json.dump(json_file, file)
+        dump(json_file, file)
 
 
 def load_cars():
@@ -21,7 +21,7 @@ def load_cars():
         create_file()
 
     with open(file_name, "r") as file:
-        return json.load(file)
+        return load(file)
 
 
 def get_id():
@@ -41,4 +41,4 @@ def create_file():
             "cars": []
         }
         
-        json.dump(contents, file)
+        dump(contents, file)
