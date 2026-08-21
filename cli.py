@@ -1,5 +1,5 @@
 from car import Car
-from car_actions import add_car, show_cars
+from car_actions import add_car, show_cars, remove_car
 from dataclasses import fields
 
 def run() -> None:
@@ -19,6 +19,8 @@ def handle_action(user_input: str) -> None:
         case "1":
             add_car_cli()
         case "2":
+            remove_car_cli()
+        case "3":
             show_cars_cli()
         case _:
             print("Wrong input")
@@ -33,6 +35,16 @@ def generate_car() -> Car:
         
         car_data[field.name] = field.type(input(f"{field.name.capitalize()}: "))
     return Car(**car_data)
+
+
+def remove_car_cli() -> None:
+    print_header("REMOVE CAR")
+
+    for car in show_cars():
+        print(car)
+
+    user_input = int(input("\nPick ID of the car you want to remove: "))
+    remove_car(user_input)
 
 
 def add_car_cli() -> None:
@@ -55,7 +67,8 @@ def show_menu() -> None:
     print_header("WHEEL HUNTER")
 
     print("""1. Add a car
-2. Show all cars
+2. Remove a car
+3. Show all cars
 0. Exit
 """)
 
