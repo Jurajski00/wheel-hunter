@@ -1,7 +1,8 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 @dataclass
 class Car:
+    identifier: int = field(init=False)
     brand: str
     model: str
     year: int

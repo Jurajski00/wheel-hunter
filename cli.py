@@ -39,9 +39,13 @@ def add_car_cli():
     print()
 
 
-def generate_car():
+def generate_car() -> Car:
     car_data = {}
+
     for field in dataclasses.fields(Car):
+        if not field.init:
+            continue
+
         car_data[field.name] = field.type(input(f"{field.name.capitalize()}: "))
     return Car(**car_data)
 
