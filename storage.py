@@ -12,8 +12,8 @@ def save_car(car: Car) -> None:
     car_list: list[dict] = json_file["cars"]
 
     car.identifier = json_file["next_id"]
-    car_list.append(asdict(car))
     
+    car_list.append(asdict(car))
     json_file["next_id"] += 1
 
     save_file(json_file)
