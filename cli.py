@@ -2,7 +2,7 @@ from car import Car
 from car_actions import add_car, show_cars
 from dataclasses import fields
 
-def run():
+def run() -> None:
     while True:
         show_menu()
         user_input = input("Choose action: ")
@@ -14,7 +14,7 @@ def run():
         handle_action(user_input)
 
 
-def handle_action(user_input):
+def handle_action(user_input: str) -> None:
     match user_input:
         case "1":
             add_car_cli()
@@ -22,15 +22,6 @@ def handle_action(user_input):
             show_cars_cli()
         case _:
             print("Wrong input")
-
-
-def add_car_cli():
-    print_header("ADD CAR")
-
-    car = generate_car()
-    add_car(car)
-
-    print(f"\nAdded {car.brand} {car.model}!")
 
 
 def generate_car() -> Car:
@@ -44,14 +35,23 @@ def generate_car() -> Car:
     return Car(**car_data)
 
 
-def show_cars_cli():
+def add_car_cli() -> None:
+    print_header("ADD CAR")
+
+    car = generate_car()
+    add_car(car)
+
+    print(f"\nAdded {car.brand} {car.model}!")
+
+
+def show_cars_cli() -> None:
     print_header("CARS")
 
     for car in show_cars():
         print(car)
 
 
-def show_menu():
+def show_menu() -> None:
     print_header("WHEEL HUNTER")
 
     print("""1. Add a car
@@ -60,7 +60,7 @@ def show_menu():
 """)
 
 
-def print_header(title):
+def print_header(title: str) -> None:
     print(f"""
 ====================
 {title:^20}
