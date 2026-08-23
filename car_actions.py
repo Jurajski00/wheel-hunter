@@ -9,6 +9,7 @@ def show_cars() -> list[dict]:
     return get_cars()
 
 
+#                                 REFACTOR LATER - FUNTION SHOULDN'T DO STORAGE STUFF
 def remove_car(id: int) -> None:
     json_file = load_file()
     car_list: list[dict] = json_file["cars"]

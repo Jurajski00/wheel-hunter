@@ -2,9 +2,10 @@ from dataclasses import asdict
 from pathlib import Path
 from json import dump, load
 from car import Car
+from scoring import get_score
 
 
-file_name = "listings.json"
+FILE_NAME = "listings.json"
 
 
 def save_car(car: Car) -> None:
@@ -12,6 +13,7 @@ def save_car(car: Car) -> None:
     car_list: list[dict] = json_file["cars"]
 
     car.identifier = json_file["next_id"]
+    car.score = get_score(car)
     
     car_list.append(asdict(car))
     json_file["next_id"] += 1
@@ -20,15 +22,15 @@ def save_car(car: Car) -> None:
 
 
 def save_file(json_file: dict) -> None:
-    with open(file_name, "w") as file:
+    with open(FILE_NAME, "w") as file:
         dump(json_file, file)
 
 
 def load_file() -> dict:
-    if not Path(file_name).exists():
+    if not Path(FILE_NAME).exists():
         create_file()
 
-    with open(file_name, "r") as file:
+    with open(FILE_NAME, "r") as file:
         return load(file)
 
 
@@ -42,5 +44,5 @@ def create_file() -> None:
         "next_id": 1,
         "cars": []
     }
-    with open(file_name, "w") as file:
+    with open(FILE_NAME, "w") as file:
         dump(contents, file)
