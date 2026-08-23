@@ -1,7 +1,9 @@
-from storage import save_car, get_cars, save_file, load_file
+from storage import save_car, get_cars, delete_car, get_next_id, get_car_score
 from car import Car
 
 def add_car(car: Car) -> None:
+    car.identifier = get_next_id()
+    car.score = get_car_score(car)
     save_car(car)
 
 
@@ -9,14 +11,5 @@ def show_cars() -> list[dict]:
     return get_cars()
 
 
-#                                 REFACTOR LATER - FUNTION SHOULDN'T DO STORAGE STUFF
-def remove_car(id: int) -> None:
-    json_file = load_file()
-    car_list: list[dict] = json_file["cars"]
-
-    for car in car_list:
-        if car["identifier"] == id:
-            car_list.remove(car)
-            break
-
-    save_file(json_file)
+def remove_car(identifier: int) -> None:
+    delete_car(identifier)
