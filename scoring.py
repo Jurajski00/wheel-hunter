@@ -1,16 +1,16 @@
-from car import Car
+from car import Car, FuelType, BodyType, SellerType
 
 MAX_PRICE_SCORE = 35
 MAX_MILEAGE_SCORE = 30
 FULE_TYPE_SCORES = {
-    "petrol + lpg": 15,
-    "petrol": 8,
-    "diesel": 0
+    FuelType.PETROL_LPG: 15,
+    FuelType.PETROL: 8,
+    FuelType.DIESEL: 0
 }
 MAX_HORSEPOWER_SCORE = 10
 SELLER_TYPE_SCORES = {
-    "private": 5,
-    "dealer": 0
+    SellerType.PRIVATE: 5,
+    SellerType.DEALER: 0
 }
 MAX_YEAR_SCORE = 5
 

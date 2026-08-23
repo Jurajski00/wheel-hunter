@@ -1,13 +1,13 @@
 from dataclasses import dataclass, field
-from enum import Enum
+from enum import StrEnum
 
-class FuelType(Enum):
+class FuelType(StrEnum):
     PETROL_LPG = "petrol + lpg"
     PETROL = "petrol"
     DIESEL = "diesel"
 
 
-class BodyType(Enum):
+class BodyType(StrEnum):
     HATCHBACK = "hatchback"
     SEDAN = "sedan"
     KOMBI = "kombi"
@@ -17,7 +17,7 @@ class BodyType(Enum):
     MINIVAN = "minivan"
 
 
-class SellerType(Enum):
+class SellerType(StrEnum):
     PRIVATE = "private"
     DEALER = "dealer"
 
