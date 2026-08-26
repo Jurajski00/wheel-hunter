@@ -1,6 +1,7 @@
 from car import Car
 from car_actions import add_car, show_cars, remove_car
 from dataclasses import fields
+from enum import Enum
 
 def run() -> None:
     while True:
@@ -32,9 +33,26 @@ def generate_car() -> Car:
     for field in fields(Car):
         if not field.init:
             continue
-        
-        car_data[field.name] = field.type(input(f"{field.name.capitalize()}: "))
+
+        while True:
+            if issubclass(field.type, Enum):
+                print_available_enum_fields(field.type)
+
+            try:
+                car_data[field.name] = field.type(input(f"{field.name.capitalize()}: "))
+                print()
+                break
+            except ValueError:
+                print("Incorrect value!\n")
+
     return Car(**car_data)
+
+
+def print_available_enum_fields(field_type: type[Enum]) -> None:
+    print("Fields:")
+    for option in field_type:
+        print(f"- {option}")
+    print()
 
 
 def remove_car_cli() -> None:
