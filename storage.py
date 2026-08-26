@@ -18,16 +18,17 @@ def save_car(car: Car) -> None:
     save_file(json_file)
 
 
-def delete_car(identifier: int) -> None:
+def try_delete_car(identifier: int) -> bool:
     json_file = load_file()
     car_list: list[dict] = json_file["cars"]
 
     for car in car_list:
         if car["identifier"] == identifier:
             car_list.remove(car)
-            break
+            save_file(json_file)
+            return True
 
-    save_file(json_file)
+    return False
 
 
 def save_file(json_file: dict) -> None:

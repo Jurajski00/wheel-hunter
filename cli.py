@@ -1,4 +1,5 @@
 from car import Car
+from exceptions import IdValidationError
 from car_actions import add_car, show_cars, remove_car
 from dataclasses import fields
 from enum import Enum
@@ -61,8 +62,18 @@ def remove_car_cli() -> None:
     for car in show_cars():
         print(car)
 
-    user_input = int(input("\nPick ID of the car you want to remove: "))
-    remove_car(user_input)
+    while True:
+        try:
+            user_input = int(input("\nPick ID of the car you want to remove: "))
+
+            if remove_car(user_input):
+                break
+
+            raise IdValidationError("ID isn't valid!")
+        except ValueError:
+            print("Incorrect value!")
+        except IdValidationError as e:
+            print(e)
 
 
 def add_car_cli() -> None:
