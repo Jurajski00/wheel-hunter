@@ -89,7 +89,12 @@ def show_cars_cli() -> None:
     print_header("CARS")
 
     for car in show_cars():
-        print(car)
+        for key, value in car.items():
+            if key == "identifier":
+                print(f"- CAR ID: {value}")
+            else:
+                print(f"{key}: {value}")
+        print()
 
 
 def show_menu() -> None:
