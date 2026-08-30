@@ -1,4 +1,4 @@
-from storage import save_car, get_cars, try_delete_car, get_next_id, get_car_score
+from storage import save_car, get_cars, try_delete_car, get_next_id, get_car_score, sort_cars
 from car import Car
 
 def add_car(car: Car) -> None:
@@ -8,7 +8,8 @@ def add_car(car: Car) -> None:
 
 
 def show_cars() -> list[dict]:
-    return get_cars()
+    car_list = get_cars()
+    return sort_cars(car_list)
 
 
 def remove_car(identifier: int) -> bool:

@@ -1,8 +1,8 @@
-from car import Car, FuelType, BodyType, SellerType
+from car import Car, FuelType, SellerType
 
 MAX_PRICE_SCORE = 35
 MAX_MILEAGE_SCORE = 30
-FULE_TYPE_SCORES = {
+FUEL_TYPE_SCORES = {
     FuelType.PETROL_LPG: 15,
     FuelType.PETROL: 8,
     FuelType.DIESEL: 0
@@ -46,7 +46,7 @@ def mileage_scoring(mileage: int) -> int:
 
 
 def fuel_type_scoring(fuel_type: str) -> int:
-    return FULE_TYPE_SCORES[fuel_type]
+    return FUEL_TYPE_SCORES[fuel_type]
 
 
 def horespower_scoring(horsepower: int) -> int:
@@ -54,7 +54,7 @@ def horespower_scoring(horsepower: int) -> int:
     return round(MAX_HORSEPOWER_SCORE * ((horsepower - MIN_ACCEPTABLE_HORSEPOWER) / (MAX_ACCEPTABLE_HORSEPOWER - MIN_ACCEPTABLE_HORSEPOWER)))
 
 
-def seller_type_scoring(seller_type: str) -> str:
+def seller_type_scoring(seller_type: str) -> int:
     return SELLER_TYPE_SCORES[seller_type]
 
 
