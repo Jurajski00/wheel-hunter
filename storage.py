@@ -41,15 +41,6 @@ def load_file() -> dict:
         return load(file)
 
 
-def sort_cars(cars: list[dict]) -> list[dict]:
-    cars.sort(reverse=True, key=sort_key)
-    return cars
-
-
-def sort_key(car: dict) -> int:
-    return car["score"]
-
-
 def create_file() -> None:
     contents = {
         "next_id": 1,
