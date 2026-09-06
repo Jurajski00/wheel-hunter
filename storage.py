@@ -2,11 +2,8 @@ from dataclasses import asdict
 from pathlib import Path
 from json import dump, load
 from car import Car
-from scoring import get_score
-
 
 FILE_NAME = "listings.json"
-
 
 def save_car(car: Car) -> None:
     json_file = load_file()
@@ -70,7 +67,3 @@ def get_cars() -> list[dict]:
 def get_next_id() -> int:
     json_file = load_file()
     return json_file["next_id"]
-
-
-def get_car_score(car: Car) -> int:
-    return get_score(car)
